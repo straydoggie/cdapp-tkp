@@ -3,18 +3,18 @@
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>-->
-  <content-view/>
+  <library/>
 </template>
 
 <script>
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
-import ContentView from "@/views/ContentView.vue";
+import Library from "@/views/Library.vue";
 export default {
   name: "home",
   components: {
     //HelloWorld
-    ContentView
+    Library
   }
 };
 </script>

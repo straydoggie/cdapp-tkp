@@ -24,9 +24,9 @@ export default new Router({
       component: () => import('./views/About.vue')
     },
     {
-      path: '/subjects',
-      name: 'subjects',
-      component: () => import('./views/Subjects.vue')
+      path: '/library',
+      name: 'Library',
+      component: () => import('./views/Library.vue')
     }
   ]
 })
