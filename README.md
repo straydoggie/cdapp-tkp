@@ -1,29 +1,5 @@
-# project-3a
+# CDAPP TK+
 
-## Project setup
-```
-npm install
-```
+##关于这项目
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+成都终端题库+，用于简化学习题出题过程，并方便的横城考试卷。

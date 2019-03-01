@@ -31,10 +31,8 @@
                     :placeholder="info"
                   ></textarea>
                 </div>
-
                 <!-- 填空答案 -->
                 <blank-answer :value="currentAnswers"></blank-answer>
-
                 <div class="col-12">
                   <!-- 标签树 -->
                   <tree-list-group @filled="setKeywords"></tree-list-group>
@@ -83,14 +81,6 @@ export default {
     };
   },
   methods: {
-    /*
-    showTip: function(typeid, text) {
-      this.tipSettings.style = this.tipSettings.styles[typeid];
-      this.tipSettings.title = this.tipSettings.titles[typeid];
-      this.tipSettings.text = text;
-      this.tipSettings.show = true;
-    },
-    */
     showTip: function(text, title, type) {
       this.tipValue = { title: title, text: text, type: type };
     },
