@@ -10,19 +10,29 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <navbar-links/>
+      <ul class="navbar-nav">
+        <link-item v-for="link in links" :key="link.id" :path="link.path">{{link.name}}</link-item>
+      </ul>
     </div>
   </nav>
 </template>
 
 <script>
-import NavbarLinks from "@/components/NavbarLinks.vue"
+import LinkItem from "@/components/LinkItem.vue";
 export default {
-  //
-  name: "navbar",
-  props:["title"],
-  components:{
-      NavbarLinks
+  name: "Navigation",
+  props: ["title"],
+  components: {
+    LinkItem
+  },
+  data: function() {
+    return {
+      links: [
+        { path: "/", name: "Home" },
+        { path: "/library", name: "Library" },
+        { path: "/about", name: "About" }
+      ]
+    };
   }
 };
 </script>

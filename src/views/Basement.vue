@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <navbar id="navbar" :title="string.appName"/>
+    <navigation id="navbar" :title="string.appName"/>
     <div class="container-fluid" style="height:100vh" :style="{paddingTop:config.navbarHeight}">
       <router-view class="h-100"/>
     </div>
@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
+import Navigation from "@/components/Navigation.vue";
 export default {
     name:"Basement",
   components: {
-    Navbar
+    Navigation
   },
   data: function() {
     return {

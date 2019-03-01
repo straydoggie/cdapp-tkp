@@ -41,12 +41,7 @@
                 </div>
                 <div class="col-12">
                   <!-- 提示信息 -->
-                  <div class="col-12 hrdiv" v-if="tipSettings.show"></div>
-                  <div class="alert" :class="tipSettings.style" v-if="tipSettings.show">
-                    <button type="button" class="close" @click="tipSettings.show=false">&times;</button>
-                    <strong>{{tipSettings.title}}</strong>
-                    {{tipSettings.text}}
-                  </div>
+                  <alert-box :tip="tipValue"></alert-box>
                 </div>
               </div>
             </div>
@@ -66,12 +61,14 @@
 <script>
 import BlankAnswer from "@/components/BlankAnswer.vue";
 import TreeListGroup from "@/components/TreeListGroup.vue";
+import AlertBox from "@/components/AlertBox.vue";
 export default {
   name: "ContentEditor",
   props: [""],
   components: {
     BlankAnswer,
-    TreeListGroup
+    TreeListGroup,
+    AlertBox
   },
   data: function() {
     return {
@@ -82,37 +79,28 @@ export default {
       currentStreamList: [],
       currentAnswers: [],
       currentKeywords: [],
-      tipSettings: {
-        show: false,
-        style: "",
-        title: "",
-        text: "",
-        styles: [
-          "alert-success",
-          "alert-info",
-          "alert-warning",
-          "alert-danger",
-          "alert-primary",
-          "alert-secondary"
-        ],
-        titles: ["成功:", "信息:", "注意: ", "错误:", "提示:", "提示:"]
-      }
+      tipValue: null
     };
   },
   methods: {
+    /*
     showTip: function(typeid, text) {
       this.tipSettings.style = this.tipSettings.styles[typeid];
       this.tipSettings.title = this.tipSettings.titles[typeid];
       this.tipSettings.text = text;
       this.tipSettings.show = true;
     },
+    */
+    showTip: function(text, title, type) {
+      this.tipValue = { title: title, text: text, type: type };
+    },
     validCurrent: function() {
       //验证数据有效性
       if (this.currentStreamList.length * this.currentAnswers.length == 0) {
-        this.showTip(3, "没有题目内容或没有设置填空！");
+        this.showTip("没有题目内容或没有设置填空！", null, null);
         return false;
       } else if (this.currentKeywords.length == 0) {
-        this.showTip(3, "请完整选择题目标签以方便今后使用！");
+        this.showTip("请完整选择题目标签以方便今后使用！", null, null);
         return false;
       }
       return true;
@@ -121,13 +109,13 @@ export default {
       //保存当前数据
       if (this.validCurrent()) {
         this.$emit("save", this.currentStreamList);
-        console.log(this.currentStreamList.join("").replace(/@/g, ""));
+        //console.log(this.currentStreamList.join("").replace(/@/g, ""));
       }
     },
     setKeywords: function(kwds) {
       //设置关键字
       this.currentKeywords = kwds;
-      console.log(this.currentKeywords.join(" "));
+      //console.log(this.currentKeywords.join(" "));
     },
     getBlanks: function() {
       //根据题干内容获取填空答案

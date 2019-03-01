@@ -19,7 +19,7 @@
 import ContentEditor from "@/components/ContentEditor.vue";
 import Container from "@/components/Container.vue";
 export default {
-  name:"Library",
+  name: "Library",
   data: function() {
     return {
       showEditor: false,
