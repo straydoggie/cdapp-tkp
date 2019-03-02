@@ -5,7 +5,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   // route level code-splitting
   // this generates a separate chunk (about.[hash].js) for this route

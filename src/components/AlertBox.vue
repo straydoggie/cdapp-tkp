@@ -1,7 +1,7 @@
 <template>
   <div class="col-12" style="padding:1em 0 0 0" v-if="show">
-    <div class="alert" style="padding:0.5em 1.5em" :class="'alert-'+type" v-if="show">
-      <button type="button" class="close" @click="tip.show=false">&times;</button>
+    <div class="alert alert-custom" :class="'alert-'+type" v-if="show">
+      <button type="button" class="close" @click="hide">&times;</button>
       <strong>{{title}}:&nbsp;</strong>
       {{text}}
     </div>
@@ -17,6 +17,12 @@ export default {
       default: function() {
         return { text: "", title: "", type: "" };
       }
+    }
+  },
+  methods: {
+    hide: function() {
+      //this.tip = { text: "", title: "", type: "" };
+      this.$emit("close");
     }
   },
   computed: {
@@ -50,9 +56,17 @@ export default {
     }
   }
 };
+
 /*
-showTip: function(text, title, type) {
-      this.tipValue = { title: title, text: text, type: type };
-    },
+tipValue: null
+showTip: function(text, title, type) {this.tipValue = { title: title, text: text, type: type };},
+<alert-box :tip="tipValue" @close="showTip(null,null,null)"></alert-box>
 */
 </script>
+
+<style scoped>
+.alert-custom {
+  padding: 0.5em 1.5em;
+  margin: 0;
+}
+</style>

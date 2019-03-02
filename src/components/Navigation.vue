@@ -28,9 +28,10 @@ export default {
   data: function() {
     return {
       links: [
-        { path: "/", name: "Home" },
-        { path: "/library", name: "Library" },
-        { path: "/about", name: "About" }
+        { path: "/library", name: "题目库" },
+        { path: "/", name: "试卷草稿" },
+        { path: "/", name: "已发布" },
+        { path: "/about", name: "关于" }
       ]
     };
   }

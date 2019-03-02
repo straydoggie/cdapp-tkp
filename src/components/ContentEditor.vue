@@ -39,14 +39,14 @@
                 </div>
                 <div class="col-12">
                   <!-- 提示信息 -->
-                  <alert-box :tip="tipValue"></alert-box>
+                  <alert-box :tip="tipValue" @close="showTip(null,null,null)"></alert-box>
                 </div>
               </div>
             </div>
             <!-- 模态框底部 -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary">继续添加</button>
-              <button type="button" class="btn btn-primary" @click="saveCurrent">添加</button>
+              <button type="button" class="btn btn-primary" @click="saveCurrent('again')">继续添加</button>
+              <button type="button" class="btn btn-primary" @click="saveCurrent('add')">添加</button>
               <button type="button" class="btn btn-secondary" @click="$emit('close')">取消</button>
             </div>
           </div>
@@ -60,6 +60,7 @@
 import BlankAnswer from "@/components/BlankAnswer.vue";
 import TreeListGroup from "@/components/TreeListGroup.vue";
 import AlertBox from "@/components/AlertBox.vue";
+import { getIdentifier } from "@/functions";
 export default {
   name: "ContentEditor",
   props: [""],
@@ -95,17 +96,26 @@ export default {
       }
       return true;
     },
-    saveCurrent: function() {
+    saveCurrent: function(e) {
       //保存当前数据
       if (this.validCurrent()) {
-        this.$emit("save", this.currentStreamList);
+        this.$emit(e, {
+          identifier: getIdentifier() + "FB",
+          type: "FB",
+          content: this.currentStreamList,
+          answers: this.currentAnswers,
+          keywords: this.currentKeywords,
+          created: new Date().toLocaleString(),
+          updated: new Date().toLocaleString(),
+          author: ""
+        });
+        //将content数组串联为字符串并去除@标识
         //console.log(this.currentStreamList.join("").replace(/@/g, ""));
       }
     },
     setKeywords: function(kwds) {
       //设置关键字
       this.currentKeywords = kwds;
-      //console.log(this.currentKeywords.join(" "));
     },
     getBlanks: function() {
       //根据题干内容获取填空答案
@@ -140,11 +150,14 @@ export default {
           temptext += templist[i];
         }
       }
+      if (temptext.length > 0) {
+        this.currentStreamList.push(temptext);
+      }
     }
   },
   watch: {
+    //侦测题干数据更新
     currentRawContent: function() {
-      //侦测题干数据更新
       this.getBlanks();
     }
   }
