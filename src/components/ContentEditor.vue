@@ -35,7 +35,7 @@
                 <blank-answer :value="currentAnswers"></blank-answer>
                 <div class="col-12">
                   <!-- 标签树 -->
-                  <tree-list-group @filled="setKeywords"></tree-list-group>
+                  <content-editor-tree @filled="setKeywords"></content-editor-tree>
                 </div>
                 <div class="col-12">
                   <!-- 提示信息 -->
@@ -58,7 +58,7 @@
 
 <script>
 import BlankAnswer from "@/components/BlankAnswer.vue";
-import TreeListGroup from "@/components/TreeListGroup.vue";
+import TreeListGroup from "@/components/ContentEditorTree.vue";
 import AlertBox from "@/components/AlertBox.vue";
 import { getIdentifier } from "@/functions";
 export default {

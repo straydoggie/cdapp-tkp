@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: "TreeList",
+  name: "ContentEditorTreeItem",
   props: ["level", "content"],
   data: function() {
     return {

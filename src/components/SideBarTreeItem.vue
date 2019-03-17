@@ -13,7 +13,7 @@
       >{{symbol}}</button>
     </div>
     <div class="children" v-if="val.branches.length>0" v-show="expanded">
-      <tree-object
+      <side-bar-tree-item
         v-for="(child,index) in val.branches"
         :key="index"
         :index="index"
@@ -21,15 +21,15 @@
         :mumkey="mykey"
         :selectedkey="selectedkey"
         @set="setkey"
-      ></tree-object>
+      ></side-bar-tree-item>
     </div>
   </div>
 </template>
 
 <script>
-import TreeObject from "@/components/TreeObject.vue";
+import TreeObject from "@/components/SideBarTreeItem.vue";
 export default {
-  name: "TreeObject",
+  name: "SideBarTreeItem",
   props: ["val", "mumkey", "index", "selectedkey"],
   components: {
     TreeObject

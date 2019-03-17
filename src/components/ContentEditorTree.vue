@@ -5,22 +5,22 @@
       :class="{'btn-danger':!finished,'border-danger':!finished}"
       v-if="false"
     >标签：</div>
-    <tree-list
+    <content-editor-tree-item
       v-for="(list,index) in lists"
       :key="index"
       :content="list"
       :level="lists.length"
       @pick="update"
-    ></tree-list>
+    ></content-editor-tree-item>
     <div class="btn btn-success border border-success" v-if="finished">&nbsp;&#10003;&nbsp;</div>
   </div>
 </template>
 
 <script>
-import TreeList from "@/components/TreeList.vue";
+import TreeList from "@/components/ContentEditorTreeItem.vue";
 export default {
   //
-  name: "TreeListGroup",
+  name: "ContentEditorTree",
   props: [""],
   components: {
     TreeList

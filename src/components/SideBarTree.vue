@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <tree-object
+    <side-bar-tree-item
       v-for="(child,index) in tree"
       :key="index"
       :val="child"
@@ -8,14 +8,14 @@
       :index="index"
       :selectedkey="selectedkey"
       @set="setkey"
-    ></tree-object>
+    ></side-bar-tree-item>
   </div>
 </template>
 
 <script>
-import TreeObject from "@/components/TreeObject.vue";
+import TreeObject from "@/components/SideBarTreeItem.vue";
 export default {
-  name: "SideTree",
+  name: "SideBarTree",
   components: {
     TreeObject
   },

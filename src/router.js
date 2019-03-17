@@ -26,6 +26,16 @@ export default new Router({
       path: '/library',
       name: 'Library',
       component: () => import('./views/Library.vue')
+    },
+    {
+      path: '/contribution',
+      name: 'Contribution',
+      component: () => import('./views/Contribution.vue')
+    },
+    {
+      path: '/library',
+      name: 'Library',
+      component: () => import('./views/Library.vue')
     }
   ]
 })

@@ -5,7 +5,7 @@
       <hr>
       <button type="button" class="btn btn-outline-primary btn-block" @click="createItem">添加题目</button>
       <hr>
-      <side-tree></side-tree>
+      <side-bar-tree></side-bar-tree>
     </template>
     <template slot="starboard">
       <content-item v-for="item in mainData" :key="item.id" :value="item" @select="selectItem"></content-item>
@@ -20,7 +20,7 @@
 import ContentEditor from "@/components/ContentEditor.vue";
 import Container from "@/components/Container.vue";
 import ContentItem from "@/components/ContentItem.vue";
-import SideTree from "@/components/SideTree.vue";
+import SideTree from "@/components/SideBarTree.vue";
 export default {
   name: "Library",
   data: function() {

@@ -44,7 +44,7 @@ export default {
 <style>
 * {
   --main-color: rgb(96, 96, 96);
-  --back-color: rgba(250, 250, 250);
+  --back-color: rgb(250, 250, 250);
   --mark-color: rgb(210, 230, 255);
   --primary-opcity-color: rgba(0, 123, 255, 0.2);
   --primary-color: rgb(0, 123, 255);

@@ -77,12 +77,13 @@ export default {
   margin-right: 0.6em;
   border-radius: 0.6em;
   color: var(--back-color);
-  padding: 0.25em 0.6em;
-  font-size: 0.5em;
+  padding: 0.25em 0.5em;
+  font-size: 0.75em;
   background: var(--main-color);
 }
 .badge-fb {
   background: var(--primary-color);
+  color: white;
 }
 .card-cuntom {
   margin: 1em 0;
@@ -92,6 +93,7 @@ export default {
   text-align: justify;
   margin: 0.75em 0.5em;
   padding: 0.25em 0.5em;
+  padding-bottom: 0;
   transition: all 0.25s;
 }
 
@@ -117,18 +119,22 @@ export default {
   vertical-align: middle;
 }
 .label-id-wrapper {
-  width: 99%;
+  width: calc(100% - 0.75em);
   text-align: right;
   padding: 0;
   margin: 0;
 }
 .label-id {
-  font-size: 0.5em;
-  border-radius: 0.5em;
-  padding: 1px 0.5em;
+  display: inline-block;
+  font-size: 18px;
+  border-radius: 10px;
+  padding: 1px 10px;
   margin: 0;
   background: none;
   color: rgba(0, 0, 0, 0.15);
+  -webkit-transform-origin-x: 100%;
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
 }
 .label-id:hover {
   background: rgba(0, 0, 0, 0.4);
