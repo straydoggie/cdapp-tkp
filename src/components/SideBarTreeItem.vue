@@ -27,12 +27,12 @@
 </template>
 
 <script>
-import TreeObject from "@/components/SideBarTreeItem.vue";
+import SideBarTreeItem from "@/components/SideBarTreeItem.vue";
 export default {
   name: "SideBarTreeItem",
   props: ["val", "mumkey", "index", "selectedkey"],
   components: {
-    TreeObject
+    SideBarTreeItem
   },
   data() {
     return {

@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import TreeObject from "@/components/SideBarTreeItem.vue";
+import SideBarTreeItem from "@/components/SideBarTreeItem.vue";
 export default {
   name: "SideBarTree",
   components: {
-    TreeObject
+    SideBarTreeItem
   },
   methods: {
     setkey(anykey) {

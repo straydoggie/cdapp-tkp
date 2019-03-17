@@ -20,7 +20,7 @@
 import ContentEditor from "@/components/ContentEditor.vue";
 import Container from "@/components/Container.vue";
 import ContentItem from "@/components/ContentItem.vue";
-import SideTree from "@/components/SideBarTree.vue";
+import SideBarTree from "@/components/SideBarTree.vue";
 export default {
   name: "Library",
   data: function() {
@@ -80,7 +80,7 @@ export default {
     Container,
     ContentEditor,
     ContentItem,
-    SideTree
+    SideBarTree
   },
   mounted() {
     this.refreshData();
