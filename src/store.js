@@ -17,11 +17,8 @@ export default new Vuex.Store({
     initLibrary(state, data) {
       state.library = data
     },
-    initPapers() {
-
-    },
-    initLists() {
-
+    initPapers(state, data) {
+      state.papers = data
     },
     setEditing() {
 
@@ -29,8 +26,8 @@ export default new Vuex.Store({
     addToLibrary(state, item) {
       state.library.unshift(item)
     },
-    addToLists() {
-
+    addToPapers(state, item) {
+      state.papers.unshift(item)
     },
     switchToPaper() {
 
@@ -52,9 +49,23 @@ export default new Vuex.Store({
         .post("./backend/", json)
         .then(response => this.saveValid(response.data));
     },
+    initPapers(context) {
+      axios.get("./backend/?action=get_papers").then(
+        response => (context.commit("initPapers", response.data))
+      )
+    },
+    addToPapers(context, item) {
+      context.commit("addToPapers", item);
+      let json = JSON.stringify({
+        action: "add_to_papers",
+        payload: item
+      });
+      axios
+        .post("./backend/", json)
+        .then(response => this.saveValid(response.data));
+    },
     saveValid(res) {
       if (res != null) {
-        //返回值验证，确认内容被添加进数据库
         console.log(res);
       }
     },

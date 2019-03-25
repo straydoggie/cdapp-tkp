@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import SideBarTreeItem from "@/components/SideBarTreeItem.vue";
+import SideBarTreeItem from "@/components/Library/SideBarTreeItem.vue";
 export default {
   name: "SideBarTreeItem",
   props: ["val", "mumkey", "index", "selectedkey"],

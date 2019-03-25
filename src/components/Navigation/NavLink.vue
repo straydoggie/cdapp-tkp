@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "LinkItem",
+  name: "NavLink",
   props: ["path"]
 };
 </script>
