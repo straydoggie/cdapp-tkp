@@ -55,12 +55,14 @@ export default {
         that.openEditor();
       }, 100);
     },
-    selectItem() {
-      const editing = this.$store.state.editing;
-      if (editing.length === 0 || editing === null) {
+    selectItem(identifier) {
+      if (
+        !this.$store.state.editing ||
+        this.$store.state.editing.content.length === 0
+      ) {
         console.log("no paper in editing");
       } else {
-        this.$store.dispatch();
+        this.$store.dispatch("selectItem", identifier);
       }
     }
   },

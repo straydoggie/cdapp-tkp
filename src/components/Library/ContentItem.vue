@@ -7,7 +7,7 @@
   >
     <div class="card-body" style="padding:1em 1em 0 1em">
       <span class="badge-cuntom badge-fb">{{findzh()}}</span>
-      <span v-if="value.type=='FB'">
+      <span v-if="value.type=='fb'">
         <span
           v-for="item in value.content"
           :key="item.id"
@@ -28,21 +28,28 @@ export default {
   data: function() {
     return {
       idclicked: false,
-      en: ["SC", "MC", "TF", "FB", "TQ", "SA", "EQ"],
-      zh: ["单选", "多选", "判断", "填空", "翻译", "简答", "问答"]
+      en: ["sc", "mc", "fb", "qt", "st", "sa", "eq"],
+      zh: ["单选", "多选", "填空", "翻译", "翻译", "简答", "问答"]
     };
   },
   computed: {
     selected() {
-      const editing = this.$store.state.editing;
-      if (editing.length > 0) {
-        for (let i = 0; i < editing.length; i++) {
-          if ((editing[i].identifier = this.value.identifier)) {
-            return true;
+      let val = false;
+      const id = this.value.identifier;
+      if (this.$store.state.editing) {
+        const content = this.$store.state.editing.content;
+        //console.log("calculating selected: " + id);
+        Object.keys(content).forEach(function(k) {
+          for (let i = 0; i < content[k].length; i++) {
+            if (content[k][i] === id) {
+              val = true;
+              break;
+            }
           }
-        }
+        });
       }
-      return false;
+      //console.log("selected " + id + " : " + val);
+      return val;
     }
   },
   methods: {

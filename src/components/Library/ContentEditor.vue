@@ -112,7 +112,7 @@ export default {
       if (this.validCurrent()) {
         this.$emit(e, {
           identifier: getIdentifier() + ".FB",
-          type: "FB",
+          type: "fb",
           content: this.currentStreamList,
           answers: this.currentAnswers,
           keywords: this.currentKeywords,
