@@ -111,7 +111,7 @@ export default {
       //保存当前数据
       if (this.validCurrent()) {
         this.$emit(e, {
-          identifier: getIdentifier() + "FB",
+          identifier: getIdentifier() + ".FB",
           type: "FB",
           content: this.currentStreamList,
           answers: this.currentAnswers,

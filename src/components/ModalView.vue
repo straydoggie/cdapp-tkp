@@ -2,7 +2,7 @@
   <transition name="modal">
     <div class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container modal-lg">
+        <div class="modal-container" :class="styleValue">
           <div class="modal-header">
             <slot name="header">
               <!-- header content with slot -->
@@ -26,7 +26,20 @@
 
 <script>
 export default {
-  name: "ModalView"
+  name: "ModalView",
+  props: ["size"],
+  computed: {
+    styleValue() {
+      switch (this.size) {
+        case "large":
+          return "modal-large";
+        case "small":
+          return "modal-small";
+        default:
+          return "modal-middle";
+      }
+    }
+  }
 };
 </script>
 
@@ -58,6 +71,23 @@ export default {
   transition: all 0.3s ease;
 }
 
+.modal-small {
+  max-width: 50em;
+  min-width: 15em;
+  width: 30vw;
+}
+
+.modal-middle {
+  max-width: 100em;
+  min-width: 20em;
+  width: 50vw;
+}
+
+.modal-large {
+  min-width: 30em;
+  width: 80vw;
+}
+
 .modal-header {
   margin: 0;
   padding: 0.5em 1em;
@@ -65,7 +95,7 @@ export default {
 
 .modal-body {
   margin: 0;
-  padding: 0.5em 1em;
+  padding: 0;
 }
 
 .modal-footer {

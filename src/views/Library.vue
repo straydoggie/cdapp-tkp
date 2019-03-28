@@ -56,8 +56,12 @@ export default {
       }, 100);
     },
     selectItem() {
-      //console.log(response);
-      //selectItem(response)
+      const editing = this.$store.state.editing;
+      if (editing.length === 0 || editing === null) {
+        console.log("no paper in editing");
+      } else {
+        this.$store.dispatch();
+      }
     }
   },
   components: {
@@ -65,9 +69,6 @@ export default {
     ContentEditor,
     ContentItem,
     SideBarTree
-  },
-  mounted() {
-    this.getData();
   }
 };
 </script>

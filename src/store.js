@@ -18,22 +18,38 @@ export default new Vuex.Store({
       state.library = data
     },
     initPapers(state, data) {
-      state.papers = data
-    },
-    setEditing() {
-
+      if (data.length > 0) {
+        state.papers = data;
+      } else {
+        state.papers = Array();
+      }
     },
     addToLibrary(state, item) {
       state.library.unshift(item)
     },
-    addToPapers(state, item) {
-      state.papers.unshift(item)
+    addToPapers() {
+      //
     },
-    switchToPaper() {
-
+    createPaper(state, paper) {
+      state.papers.unshift(paper)
+    },
+    setEditing(state, identifier) {
+      for (let i = 0; i < state.papers.length; i++) {
+        if (state.papers[i].identifier === identifier) {
+          state.editing = state.papers[i];
+        }
+      }
+      console.log(state.editing);
+    },
+    publishPaper() {
+      //
     }
   },
   actions: {
+    initStore(context) {
+      context.dispatch("initLibrary");
+      context.dispatch("initPapers");
+    },
     initLibrary(context) {
       axios.get("./backend/?action=get").then(
         response => (context.commit("initLibrary", response.data))
@@ -41,33 +57,24 @@ export default new Vuex.Store({
     },
     addToLibrary(context, item) {
       context.commit("addToLibrary", item);
-      let json = JSON.stringify({
-        action: "add",
-        payload: item
-      });
       axios
-        .post("./backend/", json)
-        .then(response => this.saveValid(response.data));
+        .post("./backend/", { action: "add", payload: item })
+        .then(response => console.log(response.data));
     },
     initPapers(context) {
       axios.get("./backend/?action=get_papers").then(
         response => (context.commit("initPapers", response.data))
       )
     },
-    addToPapers(context, item) {
-      context.commit("addToPapers", item);
-      let json = JSON.stringify({
-        action: "add_to_papers",
-        payload: item
-      });
+    createPaper(context, paper) {
+      context.commit("createPaper", paper);
+      context.commit("setEditing", paper.identifier);
       axios
-        .post("./backend/", json)
-        .then(response => this.saveValid(response.data));
+        .post("./backend/", { action: "create_paper", payload: paper })
+        .then(response => console.log(response.data));
     },
-    saveValid(res) {
-      if (res != null) {
-        console.log(res);
-      }
-    },
+    addToPaper(context, identifier) {
+
+    }
   }
 })

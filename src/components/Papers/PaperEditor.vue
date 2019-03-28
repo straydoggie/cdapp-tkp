@@ -5,26 +5,19 @@
     </template>
     <template slot="body">
       <div class="container mt-3">
-        <!-- input:title -->
+        <!-- title -->
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text input-label">试卷标题</span>
+            <span class="input-group-text input-label">标题:&nbsp;</span>
           </div>
           <input type="text" class="form-control" placeholder="必须" v-model="inputTitle">
         </div>
-        <!-- input:title.sec -->
+        <!-- comment -->
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text input-label">试卷说明</span>
+            <span class="input-group-text input-label">说明:&nbsp;</span>
           </div>
           <input type="text" class="form-control" placeholder="可选" v-model="inputComment">
-        </div>
-        <!-- input:comment -->
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text input-label">备注</span>
-          </div>
-          <input type="text" class="form-control" placeholder="可选" v-model="inputRemark">
         </div>
         <!-- alert -->
         <div
@@ -46,6 +39,7 @@
 
 <script>
 import ModalView from "@/components/ModalView.vue";
+import { getIdentifier } from "@/functions";
 export default {
   name: "PaperEditor",
   components: {
@@ -57,9 +51,47 @@ export default {
       alertDisplay: false,
       alertContent: "失败的操作",
       inputTitle: "",
-      inputComment: "",
-      inputRemark: ""
+      inputComment: ""
     };
+  },
+  computed: {
+    currentData() {
+      return {
+        identifier: getIdentifier(),
+        status: 0,
+        title: this.inputTitle,
+        comment: this.inputComment,
+        content: {
+          fb: [],
+          sc: [],
+          mc: [],
+          pt: [],
+          st: [],
+          sa: [],
+          eq: []
+        },
+        config: {
+          values: {
+            fb: 1,
+            sc: 1,
+            mc: 2,
+            pt: 2,
+            st: 4,
+            sa: 8,
+            eq: 12
+          },
+          threshold: {
+            proportion: 0.85,
+            value: 0
+          },
+          scope: {},
+          misc: {}
+        },
+        updated: [],
+        author: "",
+        misc: {}
+      };
+    }
   },
   methods: {
     showAlert(text) {
@@ -73,11 +105,7 @@ export default {
       if (this.inputTitle.length < 10) {
         this.showAlert("请输入试卷标题，且长度大于10个字");
       } else {
-        this.$emit("save", {
-          title: this.alertDisplay,
-          comment: this.inputComment,
-          remark: this.inputRemark
-        });
+        this.$emit("save", this.currentData);
       }
     },
     eventClose() {
@@ -89,7 +117,7 @@ export default {
 
 <style scoped>
 .input-label {
-  width: 6em;
+  width: auto;
 }
 .alert-custom {
   padding: 0.4em 1em 0.3em 0.6em;

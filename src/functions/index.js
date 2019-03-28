@@ -24,7 +24,7 @@ function timestamp() {
 }
 
 function getIdentifier() {
-    return timestamp() - 623347200000 + "." + randomWords(6) + ".";
+    return timestamp() + "." + randomWords(6);
 }
 
 export {

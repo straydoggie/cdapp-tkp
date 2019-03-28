@@ -37,6 +37,7 @@ export default {
   mounted() {
     this.config.navbarHeight =
       document.getElementById("navbar").offsetHeight + "px";
+    this.$store.dispatch("initStore");
   }
 };
 </script>
